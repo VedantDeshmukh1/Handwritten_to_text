@@ -3,17 +3,6 @@ from PIL import Image
 import google.generativeai as genai
 
 # Set the background image
-st.markdown(
-    """
-    <style>
-    .stApp {
-        background-image: url("https://images.unsplash.com/photo-1557684657-44335755f06c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80");
-        background-size: cover;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
 
 # Load your Google API key from Streamlit secrets
 google_api_key = st.secrets["google_api_key"]
