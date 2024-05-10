@@ -4,11 +4,11 @@ import google.generativeai as genai
 from streamlit_secrets import get_secret
 
 # Load your Google API key from secrets
-google_api_key = get_secret("google_api_key")
+google_api_key = st.secrets["google_api_key"]
 
 # Check if the API key is loaded successfully
 if not google_api_key:
-    st.error("Google API key not found in secrets.toml.")
+    st.error("Google API key not found in secrets.")
     st.stop()  # Stop further execution if API key is missing
 
 # Configure Google GenerativeAI with your API key
