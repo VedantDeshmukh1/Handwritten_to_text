@@ -1,0 +1,43 @@
+import streamlit as st
+from PIL import Image
+import google.generativeai as genai
+
+# Define your Google API key here
+google_api_key = "Your GOOGLE-API-KEY HERE"
+
+# Configure Google GenerativeAI with your API key
+genai.configure(api_key=google_api_key)
+
+# Function to get Gemini response
+def get_gemini_response(input_text, image):
+    model = genai.GenerativeModel('gemini-pro-vision')
+    if input_text != "":
+        response = model.generate_content([input_text, image])
+    else:
+        response = model.generate_content(image)
+    return response.text
+
+# Initialize Streamlit app
+st.set_page_config(page_title="Gemini Image Demo")
+st.header("Handwriting Analyzer")
+
+# Get input prompt and uploaded image
+input_text = st.text_input("Input Prompt:")
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png", "pdf"])
+image = None
+
+if uploaded_file is not None:
+    image = Image.open(uploaded_file)
+    st.image(image, caption="Uploaded Image.", use_column_width=True)
+
+# Button to trigger Gemini response generation
+submit_button = st.button("Tell me about the image")
+
+# Process Gemini response on button click
+if submit_button:
+    if image is not None:
+        response_text = get_gemini_response(input_text, image)
+        st.subheader("Response:")
+        st.write(response_text)
+    else:
+        st.warning("Please upload an image before submitting.")
