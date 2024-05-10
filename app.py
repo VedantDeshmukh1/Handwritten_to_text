@@ -3,7 +3,7 @@ from PIL import Image
 import google.generativeai as genai
 
 # Load your Google API key from Streamlit secrets
-google_api_key = st.secrets["google_api_key"]["value"]
+google_api_key = st.secrets["google_api_key"]
 
 # Check if the API key is loaded successfully
 if not google_api_key:
