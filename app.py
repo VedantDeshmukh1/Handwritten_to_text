@@ -103,7 +103,7 @@ def get_gemini_response(input_text, image):
     return response.text
 
 # Initialize Streamlit app
-st.set_page_config(page_title="Gemini Image Demo")
+
 st.header("Handwriting Analyzer")
 
 # Get input prompt and uploaded image
